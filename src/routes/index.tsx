@@ -6,30 +6,29 @@ import SignUpPage from "../pages/SignUpPage";
 import DashboardPage from "../pages/DashboardPage";
 
 const routes = createBrowserRouter([
-     {
-          path: '/',
-          element: <AppWrapperLayout />,
-          children: [
-               {
-                    element: <RootLayout />,
-                    children: [
-                         {
-                              index: true,
-                              element: <DashboardPage />
-                         }
-                    ]
-               },
-               {
-                    path: '/sign-in',
-                    element: <SignInPage />
-               },
-               {
-                    path: 'sign-up',
-                    element: <SignUpPage />
-               }
-          ]
-     }
-])
+  {
+    path: "/",
+    element: <AppWrapperLayout />,
+    children: [
+      {
+        element: <RootLayout />,
+        children: [
+          {
+            index: true,
+            element: <DashboardPage />,
+          },
+        ],
+      },
+      {
+        path: "/sign-in",
+        element: <SignInPage />,
+      },
+      {
+        path: "sign-up",
+        element: <SignUpPage />,
+      },
+    ],
+  },
+]);
 
-
-export default routes
+export default routes;

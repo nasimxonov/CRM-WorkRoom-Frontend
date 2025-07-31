@@ -8,7 +8,7 @@ import { BsAirplane } from "react-icons/bs";
 import { PiUsersLight } from "react-icons/pi";
 import { BiMessageRounded } from "react-icons/bi";
 import { FaRegFolderOpen } from "react-icons/fa6";
-import opaxon from "../assets/opaxon.svg";
+import support from "../assets/support.svg";
 import { IoExitOutline } from "react-icons/io5";
 
 const Sidebar = () => {
@@ -49,7 +49,7 @@ const Sidebar = () => {
       </div>
 
       <div className="flex items-center px-5 mt-[180px] relative w-[168px] h-[200px]">
-        <img src={opaxon} alt="" className="w-[168px]" />
+        <img src={support} alt="" className="w-[168px]" />
         <button className="btn  absolute flex items-center bg-[#3f8cff] bottom-0 text-[16px] text-white rounded-[14px] py-[10px] px-[13px] gap-1  ">
           <BiMessageRounded />
           Support
