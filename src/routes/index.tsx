@@ -1,11 +1,11 @@
 import { createBrowserRouter } from "react-router-dom";
 import RootLayout from "../layouts/RootLayout";
 import AppWrapperLayout from "../layouts/AppWrapperLayout";
+import DashboardPage from "../pages/DashboardPage";
 import SignInPage from "../pages/SignInPage";
 import SignUpPage from "../pages/SignUpPage";
-import DashboardPage from "../pages/DashboardPage";
 
-const routes = createBrowserRouter([
+export const routes = createBrowserRouter([
   {
     path: "/",
     element: <AppWrapperLayout />,
@@ -20,7 +20,7 @@ const routes = createBrowserRouter([
         ],
       },
       {
-        path: "/sign-in",
+        path: "sign-in",
         element: <SignInPage />,
       },
       {
@@ -30,5 +30,3 @@ const routes = createBrowserRouter([
     ],
   },
 ]);
-
-export default routes;

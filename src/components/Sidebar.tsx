@@ -1,64 +1,105 @@
-import React from "react";
-import logoImage from "../assets/Companyslogo.svg";
+import { Link } from "react-router-dom";
 import "../assets/styles/sidebar.css";
-import { RxDashboard } from "react-icons/rx";
-import { LuLayers } from "react-icons/lu";
-import { FaRegCalendar } from "react-icons/fa6";
-import { BsAirplane } from "react-icons/bs";
-import { PiUsersLight } from "react-icons/pi";
-import { BiMessageRounded } from "react-icons/bi";
-import { FaRegFolderOpen } from "react-icons/fa6";
-import support from "../assets/support.svg";
-import { IoExitOutline } from "react-icons/io5";
+import logo from "../assets/icons/Company's logo(1).svg";
+import active from "../assets/icons/active.svg";
+import inactive from "../assets/icons/inactive.svg";
+import calendar from "../assets/icons/calendar.svg";
+import vacation from "../assets/icons/vacations.svg";
+import friends from "../assets/icons/friends.svg";
+import messenger from "../assets/icons/messenger.svg";
+import folder from "../assets/icons/folder.svg";
+import dev from "../assets/icons/illustration.svg";
+import message from "../assets/icons/white.svg";
+import logout from "../assets/icons/logout.svg";
 
 const Sidebar = () => {
   return (
-    <aside className="w-[200px] h-full">
-      <div className="mt-[40px] px-4">
-        <img width={50} height={50} src={logoImage} alt="" />
-      </div>
-      <div className="flex flex-col gap-[21px] px-4 mt-[53px] ">
-        <div className="icon flex items-center gap-1">
-          <RxDashboard />
-          <h2>Dashboard</h2>
-        </div>
-        <div className="icon flex items-center gap-1">
-          <LuLayers />
-          <h2>Projects</h2>
-        </div>
-        <div className="icon flex items-center gap-1">
-          <FaRegCalendar />
-          <h2>Calendar</h2>
-        </div>
-        <div className="icon flex items-center gap-1">
-          <BsAirplane />
-          <h2>Vacations</h2>
-        </div>
-        <div className="icon flex items-center gap-1">
-          <PiUsersLight />
-          <h2>Employees</h2>
-        </div>
-        <div className="icon flex items-center gap-1">
-          <BiMessageRounded />
-          <h2>Messenger</h2>
-        </div>
-        <div className="icon flex items-center gap-1">
-          <FaRegFolderOpen />
-          <h2>Info Portal</h2>
-        </div>
-      </div>
+    <aside className="sidebar mt-[20px] ml-[20px] mb-[25px] mr-[30px] pb-[44px] bg-white rounded-[20px] items-center">
+      <div className="top mt-[40px] ml-[24px]">
+        <Link to={"/"}>
+          <img src={logo} alt="project-logo" />
+        </Link>
+        <nav className="flex flex-col mt-[42px] gap-2.5">
+          <div className="flex gap-2">
+            <Link
+              to={"/"}
+              className="w-[200px] grow flex gap-5 bg-[#ebf3ff] py-[11px] pl-[11px] pr-[43px] text-[16px] font-bold text-[rgba(63,_140,_255,_1)] rounded-[10px]"
+            >
+              <img src={active} alt="" /> Dashboard
+            </Link>
+            <div className="bg-[rgba(63,_140,_255,_1)] w-[4px] h-[44px] rounded-[2px]"></div>
+          </div>
 
-      <div className="flex items-center px-5 mt-[180px] relative w-[168px] h-[200px]">
-        <img src={support} alt="" className="w-[168px]" />
-        <button className="btn  absolute flex items-center bg-[#3f8cff] bottom-0 text-[16px] text-white rounded-[14px] py-[10px] px-[13px] gap-1  ">
-          <BiMessageRounded />
-          Support
-        </button>
-      </div>
+          <div className="flex gap-2">
+            <Link
+              to={"/"}
+              className="w-[200px] grow flex gap-5 py-[11px] pl-[11px] pr-[43px] text-[16px] font-bold text-[rgba(125,_133,_146,_1)] rounded-[10px]"
+            >
+              <img src={inactive} alt="" /> Projects
+            </Link>
+            {/* <div className="bg-[rgba(63,_140,_255,_1)] w-[4px] h-[44px] rounded-[2px]"></div> */}
+          </div>
 
-      <div className="flex items-center gap-1 px-4 mt-[51px]">
-        <IoExitOutline className="login-icon text-[30px]" />
-        <h2>Logout</h2>
+          <div className="flex gap-2">
+            <Link
+              to={"/"}
+              className="w-[200px] grow flex gap-5 py-[11px] pl-[11px] pr-[58px] text-[16px] font-bold text-[rgba(125,_133,_146,_1)] rounded-[10px]"
+            >
+              <img src={calendar} alt="" /> Calendar
+            </Link>
+            {/* <div className="bg-[rgba(63,_140,_255,_1)] w-[4px] h-[44px] rounded-[2px]"></div> */}
+          </div>
+
+          <div className="flex gap-2">
+            <Link
+              to={"/"}
+              className="w-[200px] grow flex gap-5 py-[11px] pl-[11px] pr-[58px] text-[16px] font-bold text-[rgba(125,_133,_146,_1)] rounded-[10px]"
+            >
+              <img src={vacation} alt="" /> Vacations
+            </Link>
+            {/* <div className="bg-[rgba(63,_140,_255,_1)] w-[4px] h-[44px] rounded-[2px]"></div> */}
+          </div>
+
+          <div className="flex gap-2">
+            <Link
+              to={"/"}
+              className="w-[200px] grow flex gap-5 py-[11px] pl-[11px] pr-[58px] text-[16px] font-bold text-[rgba(125,_133,_146,_1)] rounded-[10px]"
+            >
+              <img src={friends} alt="" /> Employees
+            </Link>
+            {/* <div className="bg-[rgba(63,_140,_255,_1)] w-[4px] h-[44px] rounded-[2px]"></div> */}
+          </div>
+
+          <div className="flex gap-2">
+            <Link
+              to={"/"}
+              className="w-[200px] grow flex gap-5 py-[11px] pl-[11px] pr-[58px] text-[16px] font-bold text-[rgba(125,_133,_146,_1)] rounded-[10px]"
+            >
+              <img src={messenger} alt="" /> Messenger
+            </Link>
+            {/* <div className="bg-[rgba(63,_140,_255,_1)] w-[4px] h-[44px] rounded-[2px]"></div> */}
+          </div>
+
+          <div className="flex gap-2">
+            <Link
+              to={"/"}
+              className="w-[200px] grow flex gap-5 py-[11px] pl-[11px] pr-[58px] text-[16px] font-bold text-[rgba(125,_133,_146,_1)] rounded-[10px]"
+            >
+              <img src={folder} alt="" /> Info Portal
+            </Link>
+            {/* <div className="bg-[rgba(63,_140,_255,_1)] w-[4px] h-[44px] rounded-[2px]"></div> */}
+          </div>
+        </nav>
+          </div>
+          
+      <div className="bottom flex flex-col items-center relative">
+        <img src={dev} alt="" className="absolute" />
+        <div className="bg-[#ebf3ff] rounded-[24px] px-[24px] pt-[94px] pb-[26px] mt-[46px]">
+          <button className="flex bg-[#3f8cff] gap-3 text-[16px] font-bold text-[white] rounded-[24px] py-[20px] px-[15px]">
+            <img src={message} alt="" /> Support
+          </button>
+        </div>
+        <button className="mt-[50px] flex gap-5 text-[rgba(125,_133,_146,_1)] items-center text-[16px] font-semibold"><img src={logout} alt="" /> Logout</button>
       </div>
     </aside>
   );
