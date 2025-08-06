@@ -61,7 +61,7 @@ const SignUpPage = () => {
                 inputClassName="w-full"
                 label="Password"
                 type={"password"}
-                placeholder="******"
+                placeholder="●●●●●●●●●●●"
                 eyeIcon={true}
               />
               <div className="flex items-center justify-between mt-[20px]">
