@@ -13,8 +13,8 @@ interface WorkloadData {
 }
 
 interface userData {
-  username: string;
-  workload: any[];
+  username?: string;
+  workload?: any[];
 }
 
 const DashboardPage = ({ username, workload }: userData) => {
