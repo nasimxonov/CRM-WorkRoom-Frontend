@@ -1,7 +1,6 @@
 import React, { useEffect, useState, type ChangeEvent } from "react";
 import Input from "../ui/Input";
 
-
 const Step4 = ({ setNextStep, setFourthStepData }) => {
   const [emails, setEmails] = useState<string[]>([""]);
 

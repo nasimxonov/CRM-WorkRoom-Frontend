@@ -9,10 +9,7 @@ const SuccessfullPage = () => {
         <h1 className="text-[22px] font-bold mt-[60px]">
           You are successfully registered!
         </h1>
-        <Link
-          to={"/"}
-          className="mt-[24px] link flex gap-x-3 items-center"
-        >
+        <Link to={"/"} className="mt-[24px] link flex gap-x-3 items-center">
           Let's Start <Icon.rightArrowIcon />
         </Link>
       </div>

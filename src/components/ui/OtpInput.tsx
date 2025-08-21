@@ -12,7 +12,13 @@ interface InputOtpProps {
   setVerifiedPhoneNumber: any;
 }
 
-const Otpinput = ({ label, phone_number, setCanSendOtp, setOtpVerified, setVerifiedPhoneNumber }: InputOtpProps) => {
+const Otpinput = ({
+  label,
+  phone_number,
+  setCanSendOtp,
+  setOtpVerified,
+  setVerifiedPhoneNumber,
+}: InputOtpProps) => {
   const [otp, setOtp] = useState("");
   const { mutateAsync, isError, isPending, error, isSuccess } = useVerifyOtp();
   useEffect(() => {

@@ -7,7 +7,12 @@ import Otpinput from "../ui/OtpInput";
 import useSendOtp from "../../hooks/requests/useSendOtp";
 import { toast } from "react-toastify";
 
-const Step1 = ({ setNextstep, setEmail, setPassword, setVerifiedPhoneNumber }) => {
+const Step1 = ({
+  setNextstep,
+  setEmail,
+  setPassword,
+  setVerifiedPhoneNumber,
+}) => {
   const [canSendOtp, setCanSendOtp] = useState<boolean>(true);
   const [otpVerified, setOtpVerified] = useState(false);
   const [email, setInpuEmail] = useState("");
@@ -17,8 +22,8 @@ const Step1 = ({ setNextstep, setEmail, setPassword, setVerifiedPhoneNumber }) =
   const passwordRegex = /^.{8,}$/;
 
   useEffect(() => {
-    setEmail(email)
-    setPassword(password)
+    setEmail(email);
+    setPassword(password);
 
     const emailValid = emailRegex.test(email);
     const passwordValid = passwordRegex.test(password);
@@ -91,7 +96,9 @@ const Step1 = ({ setNextstep, setEmail, setPassword, setVerifiedPhoneNumber }) =
         required={true}
         label="Email Address"
         placeholder="youremail@gmail.com"
-        onChange={(e: React.ChangeEvent<HTMLInputElement>) => setInpuEmail(e.target.value)}
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+          setInpuEmail(e.target.value)
+        }
       />
       <Input
         required={true}
@@ -100,11 +107,12 @@ const Step1 = ({ setNextstep, setEmail, setPassword, setVerifiedPhoneNumber }) =
         type={"password"}
         placeholder="••••••••"
         eyeIcon={true}
-        onChange={(e: React.ChangeEvent<HTMLInputElement>) => setInputPassword(e.target.value)}
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+          setInputPassword(e.target.value)
+        }
       />
     </>
   );
 };
 
 export default Step1;
-

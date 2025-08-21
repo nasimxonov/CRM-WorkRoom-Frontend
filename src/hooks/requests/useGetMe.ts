@@ -13,5 +13,3 @@ export const useGetMe = () => {
 
   return { isSuccess, data, isFetching, isLoading };
 };
-
-

@@ -21,5 +21,12 @@ export const useUpdateUserData = () => {
         });
       },
     });
-  return { mutateAsync, isPending, isSuccess, isError, error, updateData: data };
+  return {
+    mutateAsync,
+    isPending,
+    isSuccess,
+    isError,
+    error,
+    updateData: data,
+  };
 };

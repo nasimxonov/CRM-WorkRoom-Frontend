@@ -28,9 +28,7 @@ const Step2 = ({ setSecondStepData, setNextStep }) => {
           : { question_id: questionId, option_id: optionId! };
 
       if (existing) {
-        return prev.map((a) =>
-          a.question_id === questionId ? newAnswer : a
-        );
+        return prev.map((a) => (a.question_id === questionId ? newAnswer : a));
       }
       return [...prev, newAnswer];
     });
@@ -71,8 +69,7 @@ const Step2 = ({ setSecondStepData, setNextStep }) => {
                 : ""
             }
             selectedOptionId={
-              "option_id" in
-              (answers.find((a) => a.question_id === q.id) || {})
+              "option_id" in (answers.find((a) => a.question_id === q.id) || {})
                 ? (answers.find((a) => a.question_id === q.id) as any)
                     ?.option_id
                 : ""

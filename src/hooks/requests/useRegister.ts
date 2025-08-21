@@ -5,8 +5,14 @@ export const useRegister = () => {
   const { mutateAsync, isPending, isSuccess, isError, error } = useMutation({
     mutationKey: ["register"],
     mutationFn: async (data: any) => {
-      return await api.post("/auth/register",  data );
+      return await api.post("/auth/register", data);
     },
   });
-  return { mutateAsync, isPending, isSuccess, isError, error };
+  return {
+    mutateAsync,
+    isPending,
+    isSuccess,
+    isError,
+    error,
+  };
 };

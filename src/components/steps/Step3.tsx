@@ -37,15 +37,10 @@ const Step3 = ({ setNextStep, setThirdStepData }) => {
       const exists = prev.find((a) => a.question_id === qId);
       if (exists) {
         return prev.map((a) =>
-          a.question_id === qId
-            ? { ...a, option_id: optionId }
-            : a
+          a.question_id === qId ? { ...a, option_id: optionId } : a
         );
       }
-      return [
-        ...prev,
-        { question_id: qId, option_id: optionId },
-      ];
+      return [...prev, { question_id: qId, option_id: optionId }];
     });
   };
 

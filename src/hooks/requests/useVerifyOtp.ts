@@ -11,7 +11,13 @@ const useVerifyOtp = () => {
       });
     },
   });
-  return { mutateAsync, isError, error, isPending, isSuccess };
+  return {
+    mutateAsync,
+    isError,
+    error,
+    isPending,
+    isSuccess,
+  };
 };
 
 export default useVerifyOtp;
