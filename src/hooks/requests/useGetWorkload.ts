@@ -10,10 +10,5 @@ export const useGetWorkload = () => {
     },
   });
 
-  return {
-    Success: isSuccess,
-    workloadData: data,
-    fetching: isFetching,
-    loading: isLoading,
-  };
+  return { Success: isSuccess, workloadData: data, fetching: isFetching, loading: isLoading };
 };

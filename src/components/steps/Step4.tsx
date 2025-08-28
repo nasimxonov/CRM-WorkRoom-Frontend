@@ -1,35 +1,36 @@
 import React, { useEffect, useState, type ChangeEvent } from "react";
 import Input from "../ui/Input";
 
-const Step4 = ({ setNextStep, setFourthStepData }) => {
-  const [emails, setEmails] = useState<string[]>([""]);
 
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const Step4 = ({ setNextStep, form }) => {
+  // const [emails, setEmails] = useState<string[]>([""]);
 
-  useEffect(() => {
-    setFourthStepData({ emails });
+  // const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-    const allValid =
-      emails.length > 0 &&
-      emails.every((m) => m.trim() !== "" && emailRegex.test(m));
-    setNextStep(allValid);
-  }, [emails, setFourthStepData, setNextStep]);
+  // useEffect(() => {
+  //   setFourthStepData({ emails });
 
-  const handleChange = (index: number, e: ChangeEvent<HTMLInputElement>) => {
-    const newEmails = [...emails];
-    newEmails[index] = e.target.value;
-    setEmails(newEmails);
-  };
+  //   const allValid =
+  //     emails.length > 0 &&
+  //     emails.every((m) => m.trim() !== "" && emailRegex.test(m));
+  //   setNextStep(allValid);
+  // }, [emails, setFourthStepData, setNextStep]);
 
-  const addInput = () => {
-    if (emails.length < 5) {
-      setEmails((prev) => [...prev, ""]);
-    }
-  };
+  // const handleChange = (index: number, e: ChangeEvent<HTMLInputElement>) => {
+  //   const newEmails = [...emails];
+  //   newEmails[index] = e.target.value;
+  //   setEmails(newEmails);
+  // };
+
+  // const addInput = () => {
+  //   if (emails.length < 5) {
+  //     setEmails((prev) => [...prev, ""]);
+  //   }
+  // };
 
   return (
     <div className="max-w-[403px]">
-      <form
+      {/* <form
         className="flex w-full flex-col gap-y-8 mt-[33px] items-start"
         onSubmit={(e) => e.preventDefault()}
       >
@@ -56,7 +57,7 @@ const Step4 = ({ setNextStep, setFourthStepData }) => {
             + Add another Member
           </button>
         )}
-      </form>
+      </form> */}
     </div>
   );
 };

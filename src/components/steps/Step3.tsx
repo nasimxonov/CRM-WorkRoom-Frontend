@@ -1,7 +1,9 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, type Dispatch, type SetStateAction } from "react";
 import Input from "../ui/Input";
 import useGetStepInputs from "../../hooks/requests/useGetStep2";
 import UniversalInput from "../ui/SelectInput";
+import type { UseFormReturn } from "react-hook-form";
+import AttributeLayout from "../AttributeLayout";
 
 interface Answer {
   question_id: string;
@@ -9,67 +11,91 @@ interface Answer {
   option_id?: string;
 }
 
-const Step3 = ({ setNextStep, setThirdStepData }) => {
-  const { isSuccess, data, isFetching } = useGetStepInputs(3);
-  const questions = data?.data || [];
+export interface IOptions {
+  id: string;
+  option_text: string;
+  option_value: string;
+}
 
-  const [answers, setAnswers] = useState<Answer[]>([]);
-  const [selectedButton, setSelectedButton] = useState<string | null>(null);
+export interface IQuestions {
+  id: string;
+  question_text: string;
+  question_type: string;
+  is_required: boolean;
+  options?: IOptions[];
+}
 
-  const handleInputChange = (qId: string, value: string) => {
-    setAnswers((prev) => {
-      const exists = prev.find((a) => a.question_id === qId);
-      if (exists) {
-        return prev.map((a) =>
-          a.question_id === qId ? { ...a, answer_text: value } : a
-        );
-      }
-      return [...prev, { question_id: qId, answer_text: value }];
-    });
-  };
+interface Props {
+  setNextStep: Dispatch<SetStateAction<boolean>>;
+  form: UseFormReturn<any>;
+}
 
-  const handleSelectChange = (
-    qId: string,
-    value: string,
-    optionId?: string
-  ) => {
-    setAnswers((prev) => {
-      const exists = prev.find((a) => a.question_id === qId);
-      if (exists) {
-        return prev.map((a) =>
-          a.question_id === qId ? { ...a, option_id: optionId } : a
-        );
-      }
-      return [...prev, { question_id: qId, option_id: optionId }];
-    });
-  };
+const Step3 = ({ setNextStep, form }) => {
+  const { isSuccess, data, isFetching, isError } = useGetStepInputs(3);
+  // const questions = data?.data || [];
 
-  const handleButtonSelect = (qId: string, optionId: string) => {
-    setSelectedButton(optionId);
-    setAnswers((prev) => {
-      const exists = prev.find((a) => a.question_id === qId);
-      if (exists) {
-        return prev.map((a) =>
-          a.question_id === qId ? { ...a, option_id: optionId } : a
-        );
-      }
-      return [...prev, { question_id: qId, option_id: optionId }];
-    });
-  };
+  // const [answers, setAnswers] = useState<Answer[]>([]);
+  // const [selectedButton, setSelectedButton] = useState<string | null>(null);
 
+  // const handleInputChange = (qId: string, value: string) => {
+  //   setAnswers((prev) => {
+  //     const exists = prev.find((a) => a.question_id === qId);
+  //     if (exists) {
+  //       return prev.map((a) =>
+  //         a.question_id === qId ? { ...a, answer_text: value } : a
+  //       );
+  //     }
+  //     return [...prev, { question_id: qId, answer_text: value }];
+  //   });
+  // };
+
+  // const handleSelectChange = (
+  //   qId: string,
+  //   value: string,
+  //   optionId?: string
+  // ) => {
+  //   setAnswers((prev) => {
+  //     const exists = prev.find((a) => a.question_id === qId);
+  //     if (exists) {
+  //       return prev.map((a) =>
+  //         a.question_id === qId ? { ...a, option_id: optionId } : a
+  //       );
+  //     }
+  //     return [...prev, { question_id: qId, option_id: optionId }];
+  //   });
+  // };
+
+  // const handleButtonSelect = (qId: string, optionId: string) => {
+  //   setSelectedButton(optionId);
+  //   setAnswers((prev) => {
+  //     const exists = prev.find((a) => a.question_id === qId);
+  //     if (exists) {
+  //       return prev.map((a) =>
+  //         a.question_id === qId ? { ...a, option_id: optionId } : a
+  //       );
+  //     }
+  //     return [...prev, { question_id: qId, option_id: optionId }];
+  //   });
+  // };
+
+  // useEffect(() => {
+  //   setThirdStepData(answers);
+  //   setNextStep(answers.length === questions.length);
+  // }, [answers, questions, setThirdStepData, setNextStep]);
+
+  // if (isFetching) {
+  //   return <p>Loading...</p>;
+  // }
+
+  const questions: IQuestions[] = data?.data;
   useEffect(() => {
-    setThirdStepData(answers);
-    setNextStep(answers.length === questions.length);
-  }, [answers, questions, setThirdStepData, setNextStep]);
-
-  if (isFetching) {
-    return <p>Loading...</p>;
-  }
+    setNextStep(true);
+  }, []);
 
   return (
     <div className="max-w-[403px]">
       <form className="flex w-full flex-col gap-y-[31px] mt-[33px]">
-        {questions.map((q) => {
+        {/* {questions.map((q) => {
           switch (q.question_type) {
             case "text":
             case "email":
@@ -127,7 +153,21 @@ const Step3 = ({ setNextStep, setThirdStepData }) => {
             default:
               return null;
           }
-        })}
+        })} */}
+
+        {questions &&
+          questions.length >= 1 &&
+          questions.map((question) => (
+            <AttributeLayout
+              form={form}
+              key={question.id}
+              is_required={question.is_required}
+              question_id={question.id}
+              question_text={question.question_text}
+              type={question.question_type}
+              options={question.options}
+            />
+          ))}
       </form>
     </div>
   );

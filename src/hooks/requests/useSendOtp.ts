@@ -10,13 +10,6 @@ const useSendOtp = () => {
         });
       },
     });
-  return {
-    mutateAsync,
-    data,
-    error,
-    isSuccess,
-    isError,
-    isPending,
-  };
+  return { mutateAsync, data, error, isSuccess, isError, isPending };
 };
 export default useSendOtp;

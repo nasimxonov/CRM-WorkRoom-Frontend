@@ -8,7 +8,7 @@ interface QuestionAnswer {
 interface RegisterState {
   email: string;
   password: string;
-  questions: QuestionAnswer[];
+  questions: QuestionAnswer[]; 
   setEmail: (email: string) => void;
   setPassword: (password: string) => void;
   setQuestion: (index: number, question: string) => void;
@@ -19,13 +19,11 @@ interface RegisterState {
 const useRegisterStore = create<RegisterState>((set) => ({
   email: "",
   password: "",
-  questions: Array(6)
-    .fill(null)
-    .map(() => ({ question: "", answer: "" })),
-
+  questions: Array(6).fill(null).map(() => ({ question: "", answer: "" })),
+  
   setEmail: (email) => set({ email }),
   setPassword: (password) => set({ password }),
-
+  
   setQuestion: (index, question) =>
     set((state) => {
       const updated = [...state.questions];
@@ -44,9 +42,7 @@ const useRegisterStore = create<RegisterState>((set) => ({
     set({
       email: "",
       password: "",
-      questions: Array(6)
-        .fill(null)
-        .map(() => ({ question: "", answer: "" })),
+      questions: Array(6).fill(null).map(() => ({ question: "", answer: "" })),
     }),
 }));
 

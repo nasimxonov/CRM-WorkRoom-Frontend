@@ -90,8 +90,8 @@ const Sidebar = () => {
             {/* <div className="bg-[rgba(63,_140,_255,_1)] w-[4px] h-[44px] rounded-[2px]"></div> */}
           </div>
         </nav>
-      </div>
-
+          </div>
+          
       <div className="bottom flex flex-col items-center relative">
         <img src={dev} alt="" className="absolute" />
         <div className="bg-[#ebf3ff] rounded-[24px] px-[24px] pt-[94px] pb-[26px] mt-[46px]">
@@ -99,9 +99,7 @@ const Sidebar = () => {
             <img src={message} alt="" /> Support
           </button>
         </div>
-        <button className="mt-[50px] flex gap-5 text-[rgba(125,_133,_146,_1)] items-center text-[16px] font-semibold">
-          <img src={logout} alt="" /> Logout
-        </button>
+        <button className="mt-[50px] flex gap-5 text-[rgba(125,_133,_146,_1)] items-center text-[16px] font-semibold"><img src={logout} alt="" /> Logout</button>
       </div>
     </aside>
   );

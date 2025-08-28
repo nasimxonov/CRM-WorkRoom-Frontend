@@ -12,12 +12,5 @@ export const useLogin = () => {
         });
       },
     });
-  return {
-    mutateAsync,
-    isPending,
-    isSuccess,
-    isError,
-    error,
-    data,
-  };
+  return { mutateAsync, isPending, isSuccess, isError, error, data };
 };

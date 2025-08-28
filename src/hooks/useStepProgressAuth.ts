@@ -31,10 +31,7 @@ const data: IDataProgress[] = [
 
 const useStepProgressAuth = () => {
   const [progressData, setProgressData] = useState<IDataProgress[]>(data);
-  return {
-    progressData,
-    setProgressData,
-  };
+  return { progressData, setProgressData };
 };
 
 export default useStepProgressAuth;

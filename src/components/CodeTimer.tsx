@@ -11,6 +11,7 @@ interface Props {
   time: number;
   setCanSendOtp: Dispatch<SetStateAction<boolean>>;
 }
+
 const CodeTimer = ({ phone_number, time, setCanSendOtp }: Props) => {
   const [timer, setTimer] = useState<number>(time);
   const [intervalId, setIntervalId] = useState<NodeJS.Timeout>();

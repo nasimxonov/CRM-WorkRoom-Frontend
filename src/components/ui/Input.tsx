@@ -14,7 +14,7 @@ interface InputProps extends HTMLAttributes<HTMLInputElement> {
   eyeIcon?: boolean;
   inputClassName: string;
   required?: boolean;
-  placeholder: string;
+  placeholder?: string;
   type: HTMLInputTypeAttribute;
   locationIcon?: boolean;
 }
