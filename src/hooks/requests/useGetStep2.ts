@@ -1,17 +1,18 @@
 import { useQuery } from "@tanstack/react-query";
 import { api } from "../../config/axios";
+import ENDPOINTS from "../../config/endpoints";
 
-const useGetStepInputs = (step_number: number) => {
-  const { isSuccess, data, isFetching, isLoading, isError } = useQuery({
-    queryKey: ["admin-questions", step_number], 
+export const useGetProfileQuestions = (step_number: number) => {
+  const url = ENDPOINTS.user.profileQuestions(step_number);
+  const { data, isError, isSuccess } = useQuery({
+    queryKey: ["user-profile-questions"],
     queryFn: async () => {
-      return await api.get("admin/questions", {
-        params: { step_number }, 
-      });
+      return await api.get(url);
     },
   });
-
-  return { isSuccess, data, isFetching, isLoading, isError };
+  return {
+    data,
+    isError,
+    isSuccess,
+  };
 };
-
-export default useGetStepInputs;

@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
-import { data, Link, useNavigate } from "react-router-dom";
+import { useForm, type SubmitHandler } from "react-hook-form";
+import { toast } from "react-toastify";
 import Step1 from "../components/steps/Step1";
 import Step2 from "../components/steps/Step2";
 import Step3 from "../components/steps/Step3";
@@ -7,11 +8,11 @@ import Step4 from "../components/steps/Step4";
 import Button from "../components/ui/Button";
 import Icon from "../components/ui/Icon";
 import ProgressStep from "../components/ui/progress-step";
-import useStepProgressAuth from "../hooks/useStepProgressAuth";
-import { useRegister } from "../hooks/requests/useRegister";
-import { useForm, type SubmitHandler } from "react-hook-form";
 import { useCheckEmail } from "../hooks/requests/useCheckEmail";
-import { toast } from "react-toastify";
+import useStepProgressAuth from "../hooks/useStepProgressAuth";
+import { useRegister, type IRegister } from "../hooks/requests/useRegister";
+import { useNavigate } from "react-router-dom";
+import Loader from "../components/ui/Loader";
 
 type Answer =
   | { type: "option"; question_id: string; option_id: string }
@@ -123,6 +124,12 @@ const SignUpPage = () => {
   const formRef = useRef<HTMLFormElement>(null);
   const totalStep = 4;
   const { progressData, setProgressData } = useStepProgressAuth();
+  const {
+    mutateAsync: mutateRegisterAsync,
+    isSuccess: registerSuccess,
+    isPending: registerPending,
+  } = useRegister();
+
   const handleSavePreviusStep = () => {
     const findStep = progressData.find((step) => step.step === currentStep - 1);
     findStep.isSuccess = true;
@@ -137,6 +144,8 @@ const SignUpPage = () => {
   const decrementCurrentStep = () => {
     setCurrentStep((prevState) => prevState - 1);
   };
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (currentStep !== 1) {
@@ -161,7 +170,9 @@ const SignUpPage = () => {
         return <Step3 form={form} setNextStep={setNextStep} />;
       }
       case 4: {
-        return <Step4 form={form} setNextStep={setNextStep} />;
+        return (
+          <Step4 form={form} formRef={formRef} setNextStep={setNextStep} />
+        );
       }
     }
   };
@@ -169,19 +180,56 @@ const SignUpPage = () => {
   const { mutateAsync, data, isSuccess } = useCheckEmail();
 
   const onSubmit: SubmitHandler<any> = (data: any) => {
-    console.log(data);
+    let members = [];
+    for (let i in data) {
+      if (i.split("-")[0] == "members") {
+        members.push(data[i]);
+      }
+    }
+
+    let sendData: IRegister = {
+      email: data.email,
+      password: data.password,
+      phone_number: data.phone_number,
+      answers: getAnswers(data),
+      members,
+    };
+
+    mutateRegisterAsync(sendData);
   };
+
+  function getAnswers(data: any) {
+    const arr = Object.entries(data);
+    const result = [];
+    for (let [key, value] of arr) {
+      if (
+        !key.includes("email") &&
+        !key.includes("phone_number") &&
+        !key.includes("password") &&
+        !key.startsWith("members-")
+      ) {
+        result.push({
+          question_id: key,
+          value,
+        });
+      }
+    }
+    return result;
+  }
 
   useEffect(() => {
     if (isSuccess) {
       const status = data.data;
-      if (!status) {
+      if (status) {
         return incrementCurrentStep();
       }
       toast.error("Email already exists");
-      return incrementCurrentStep();
     }
   }, [isSuccess]);
+
+  useEffect(() => {
+    if (registerSuccess) navigate("/successfull");
+  }, [registerSuccess]);
 
   const onNextStep = () => {
     const isValid = formRef.current.checkValidity();
@@ -336,8 +384,7 @@ const SignUpPage = () => {
                     onClick={form.handleSubmit(onSubmit)}
                     className={`flex ml-auto mr-10 items-center gap-x-3`}
                   >
-                    Submit
-                    <Icon.rightArrowIcon />
+                    {registerPending ? <Loader /> : "Submit"}
                   </Button>
                 )}
               </div>
